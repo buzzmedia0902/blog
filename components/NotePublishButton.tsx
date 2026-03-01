@@ -11,62 +11,60 @@ export function NotePublishButton({ post }: NotePublishButtonProps) {
   const [isCopied, setIsCopied] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
 
-  // Markdown を簡易的にテキストに変換
-  const convertMarkdownToText = (markdown: string): string => {
+  // Markdown を保持しながらnote.com用に整形
+  const formatContentForNote = (markdown: string): string => {
     return markdown
-      .replace(/^### (.*?)$/gm, "$1") // H3
-      .replace(/^## (.*?)$/gm, "$1") // H2
-      .replace(/^# (.*?)$/gm, "$1") // H1
-      .replace(/\*\*(.*?)\*\*/g, "$1") // Bold
-      .replace(/\*(.*?)\*/g, "$1") // Italic
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1 ($2)") // Links
-      .replace(/^- /gm, "• ") // Bullets
+      // リンクのフォーマット
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1 ($2)")
+      // 箇条書きを整形
+      .replace(/^- /gm, "• ")
+      // 段落区切りを追加
+      .replace(/\n\n/g, "\n\n")
       .trim();
   };
 
   // note.com 投稿フォーマット生成
   const generateNoteFormat = (): string => {
-    const textContent = convertMarkdownToText(post.content);
+    const formattedContent = formatContentForNote(post.content);
     const tags = post.tags.map((tag) => `#${tag}`).join(" ");
     const sourceUrl = `https://blog.openclaw.io/blog/${post.slug}`;
-    const contentPreview = textContent.substring(0, 1800);
+    const contentPreview = formattedContent.substring(0, 2500);
     const publishDate = new Date(post.date).toLocaleDateString("ja-JP", {
       year: "numeric",
       month: "long",
       day: "numeric"
     });
 
+    const separator = "---";
+
     return `# ${post.title}
 
 ${post.description}
 
----
+${separator}
 
 ${contentPreview}
 
-...
+[記事の全文を読む](${sourceUrl})
 
----
+${separator}
 
-## 記事について
-
-このブログ記事はOpenclawの実務活用に関する記事です。
-
-### 元の記事を読む
-
-${sourceUrl}
-
----
-
-### 記事情報
+## 📌 記事情報
 
 **出典：** Openclaw Blog
 **公開日：** ${publishDate}
 **カテゴリ：** ${post.category}
 
-### タグ
+---
 
-${tags}`;
+## 🏷️ タグ
+
+${tags}
+
+---
+
+このブログ記事はOpenclawの実務活用に関する記事です。
+元の記事でより詳しい情報を確認できます。`;
   };
 
   const noteContent = generateNoteFormat();
