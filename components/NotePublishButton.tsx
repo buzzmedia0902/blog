@@ -36,7 +36,7 @@ export function NotePublishButton({ post }: NotePublishButtonProps) {
       day: "numeric"
     });
 
-    return `${post.title}
+    return `**${post.title}**
 
 ${post.description}
 
@@ -50,12 +50,12 @@ ${contentPreview}
 
 このブログ記事はOpenclawの実務活用に関する記事です。
 
-記事の全文を読む
+**記事の全文を読む**
 ${sourceUrl}
 
-出典：Openclaw Blog
-公開日：${publishDate}
-カテゴリ：${post.category}
+**出典：** Openclaw Blog
+**公開日：** ${publishDate}
+**カテゴリ：** ${post.category}
 
 ${tags}`;
   };
