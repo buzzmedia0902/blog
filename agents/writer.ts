@@ -27,7 +27,7 @@ ${outlineMarkdown}
 記事本文を、見出し（H2）から始めてMarkdown形式で出力してください。フロントマターは不要です。`;
 
   const message = await client.messages.create({
-    model: "claude-sonnet-4-6-20250514",
+    model: "claude-sonnet-4-6",
     max_tokens: 4000,
     messages: [
       {

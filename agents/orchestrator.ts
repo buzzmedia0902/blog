@@ -48,7 +48,7 @@ ${editedContent.content.substring(0, 500)}...
 JSON形式で返してください: { "status": "OK" | "NEEDS_REVISION", "notes": "..." }`;
 
     const qualityCheckMessage = await client.messages.create({
-      model: "claude-opus-4-6-20250514",
+      model: "claude-opus-4-6",
       max_tokens: 500,
       messages: [
         {
