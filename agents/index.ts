@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { orchestrateBlogGeneration } from "./orchestrator";
 import { AgentInput } from "./types";
 
