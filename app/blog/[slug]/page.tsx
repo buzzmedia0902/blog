@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { BlogPost } from "@/lib/types";
 import { CategoryBadge } from "@/components/CategoryBadge";
+import { NotePublishButton } from "@/components/NotePublishButton";
 import { getPostBySlug, getPostSlugs, getRelatedPosts } from "@/lib/markdown";
 
 interface BlogDetailPageProps {
@@ -105,6 +106,8 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             </div>
           </div>
         </article>
+
+        <NotePublishButton post={post} />
 
         {relatedPosts.length > 0 && (
           <section className="border-t border-dark-border pt-12">
