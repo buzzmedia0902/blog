@@ -30,42 +30,34 @@ export function NotePublishButton({ post }: NotePublishButtonProps) {
     const tags = post.tags.map((tag) => `#${tag}`).join(" ");
     const sourceUrl = `https://blog.openclaw.io/blog/${post.slug}`;
     const contentPreview = textContent.substring(0, 1800);
+    const publishDate = new Date(post.date).toLocaleDateString("ja-JP", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
 
-    // セクション区切り用の装飾
-    const separator = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
-
-    return `# ${post.title}
-
-${separator}
-
-## 📄 概要
+    return `${post.title}
 
 ${post.description}
 
-${separator}
-
-## 📖 本文
 
 ${contentPreview}
 
-[記事の全文をOpenclawブログで読む →](${sourceUrl})
+...
 
-${separator}
 
-## 📌 記事情報
+---
 
-**出典:** [Openclaw Blog](https://blog.openclaw.io)
-**カテゴリ:** ${post.category}
-**公開日:** ${new Date(post.date).toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}
+このブログ記事はOpenclawの実務活用に関する記事です。
 
-## 🏷️ タグ
+記事の全文を読む
+${sourceUrl}
 
-${tags}
+出典：Openclaw Blog
+公開日：${publishDate}
+カテゴリ：${post.category}
 
-${separator}
-
-**このブログ記事はOpenclawの実務活用に関する記事です。**
-元の記事はこちら: ${sourceUrl}`;
+${tags}`;
   };
 
   const noteContent = generateNoteFormat();
