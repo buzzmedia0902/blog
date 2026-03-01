@@ -29,20 +29,43 @@ export function NotePublishButton({ post }: NotePublishButtonProps) {
     const textContent = convertMarkdownToText(post.content);
     const tags = post.tags.map((tag) => `#${tag}`).join(" ");
     const sourceUrl = `https://blog.openclaw.io/blog/${post.slug}`;
+    const contentPreview = textContent.substring(0, 1800);
 
-    return `${post.title}
+    // セクション区切り用の装飾
+    const separator = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+
+    return `# ${post.title}
+
+${separator}
+
+## 📄 概要
 
 ${post.description}
 
----
+${separator}
 
-${textContent.substring(0, 2000)}...
+## 📖 本文
 
----
-出典: Openclaw Blog
-${sourceUrl}
+${contentPreview}
 
-${tags}`;
+[記事の全文をOpenclawブログで読む →](${sourceUrl})
+
+${separator}
+
+## 📌 記事情報
+
+**出典:** [Openclaw Blog](https://blog.openclaw.io)
+**カテゴリ:** ${post.category}
+**公開日:** ${new Date(post.date).toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}
+
+## 🏷️ タグ
+
+${tags}
+
+${separator}
+
+**このブログ記事はOpenclawの実務活用に関する記事です。**
+元の記事はこちら: ${sourceUrl}`;
   };
 
   const noteContent = generateNoteFormat();
