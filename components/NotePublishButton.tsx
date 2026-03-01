@@ -36,26 +36,35 @@ export function NotePublishButton({ post }: NotePublishButtonProps) {
       day: "numeric"
     });
 
-    return `**${post.title}**
+    return `# ${post.title}
 
 ${post.description}
 
+---
 
 ${contentPreview}
 
 ...
 
-
 ---
+
+## 記事について
 
 このブログ記事はOpenclawの実務活用に関する記事です。
 
-**記事の全文を読む**
+### 元の記事を読む
+
 ${sourceUrl}
+
+---
+
+### 記事情報
 
 **出典：** Openclaw Blog
 **公開日：** ${publishDate}
 **カテゴリ：** ${post.category}
+
+### タグ
 
 ${tags}`;
   };
