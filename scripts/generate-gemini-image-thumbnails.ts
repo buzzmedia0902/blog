@@ -9,15 +9,15 @@ const client = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY);
 
 const CATEGORY_PROMPTS = {
   PRACTICAL:
-    "Professional business automation and workflow concept, modern minimalist design with gradient blue and purple, corporate aesthetic, high quality, 1024x1024",
+    "Professional business automation and workflow concept, modern minimalist design with gradient blue and purple, corporate aesthetic, high quality. Optimized for 1280x670px - keep important elements in central area. Wide landscape format.",
   TUTORIAL:
-    "Educational step-by-step learning guide, clean design with gradient cyan and teal, technical illustration, teaching style, 1024x1024",
+    "Educational step-by-step learning guide, clean design with gradient cyan and teal, technical illustration, teaching style. Optimized for 1280x670px - keep important elements in central area. Wide landscape format.",
   INSIGHTS:
-    "Data analytics and insights visualization, abstract charts and graphs, gradient orange and gold, modern infographic, 1024x1024",
+    "Data analytics and insights visualization, abstract charts and graphs, gradient orange and gold, modern infographic. Optimized for 1280x670px - keep important elements in central area. Wide landscape format.",
   CASE_STUDY:
-    "Success story and achievement concept, growth visualization, gradient green and emerald, professional corporate style, 1024x1024",
+    "Success story and achievement concept, growth visualization, gradient green and emerald, professional corporate style. Optimized for 1280x670px - keep important elements in central area. Wide landscape format.",
   ANNOUNCEMENT:
-    "Important announcement and news concept, vibrant design, gradient red and pink, attention-grabbing modern aesthetic, 1024x1024",
+    "Important announcement and news concept, vibrant design, gradient red and pink, attention-grabbing modern aesthetic. Optimized for 1280x670px - keep important elements in central area. Wide landscape format.",
 };
 
 function downloadImage(url: string, filepath: string): Promise<void> {
