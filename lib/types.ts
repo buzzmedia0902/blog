@@ -10,6 +10,7 @@ export interface BlogPost {
   seoTitle: string;
   seoDescription: string;
   content: string;
+  thumbnail?: string;
 }
 
 export interface BlogPostMetadata {
@@ -21,6 +22,7 @@ export interface BlogPostMetadata {
   seo_title: string;
   seo_description: string;
   slug: string;
+  thumbnail?: string;
 }
 
 export interface GenerateRequest {
@@ -36,4 +38,5 @@ export interface BlogCardProps {
   category: Category;
   description: string;
   tags: string[];
+  thumbnail?: string;
 }
