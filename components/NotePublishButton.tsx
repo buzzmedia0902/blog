@@ -59,53 +59,129 @@ ${tags}`;
   };
 
   return (
-    <div className="mt-12 p-6 bg-dark-card border border-dark-border rounded-lg">
-      <h3 className="text-lg font-bold text-dark-text mb-4">
-        📝 note.com に投稿
-      </h3>
+    <div className="mt-16 mb-12">
+      {/* ヘッダーセクション */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-accent-purple/20 via-dark-card to-accent-indigo/10 border border-accent-purple/30 p-8 md:p-10">
+        {/* 背景装飾 */}
+        <div className="absolute top-0 right-0 w-40 h-40 bg-accent-purple/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent-indigo/10 rounded-full blur-3xl -ml-16 -mb-16"></div>
 
-      <p className="text-dark-muted text-sm mb-4">
-        この記事をnote.comで共有できます。下のボタンをクリックしてコピーし、note.comに貼り付けてください。
-      </p>
+        {/* コンテンツ */}
+        <div className="relative z-10">
+          <div className="flex items-start gap-3 mb-6">
+            <span className="text-4xl">📝</span>
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-purple to-accent-indigo mb-2">
+                note.com で共有する
+              </h3>
+              <p className="text-dark-muted text-sm md:text-base">
+                この記事をnote.comで共有しましょう。3ステップで完了します。
+              </p>
+            </div>
+          </div>
 
-      <div className="flex flex-col sm:flex-row gap-3 mb-4">
-        <button
-          onClick={handleCopy}
-          className="flex-1 px-4 py-2 bg-accent-purple hover:bg-accent-indigo text-white rounded-lg font-semibold transition-colors"
-        >
-          {isCopied ? "✅ コピーしました！" : "📋 テキストをコピー"}
-        </button>
+          {/* アクションボタン */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+            {/* コピーボタン */}
+            <button
+              onClick={handleCopy}
+              className={`group relative px-6 py-3 rounded-xl font-semibold transition-all duration-300 overflow-hidden ${
+                isCopied
+                  ? "bg-green-500/20 text-green-300 border border-green-500/50"
+                  : "bg-gradient-to-r from-accent-purple to-accent-indigo text-white border border-accent-purple/50 hover:shadow-lg hover:shadow-accent-purple/50 hover:-translate-y-1"
+              }`}
+            >
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                {isCopied ? (
+                  <>
+                    <span>✅</span>
+                    <span>コピーしました！</span>
+                  </>
+                ) : (
+                  <>
+                    <span>📋</span>
+                    <span>テキストをコピー</span>
+                  </>
+                )}
+              </span>
+            </button>
 
-        <button
-          onClick={handleOpenNote}
-          className="flex-1 px-4 py-2 bg-dark-border hover:bg-dark-border/80 text-dark-text rounded-lg font-semibold transition-colors"
-        >
-          📖 note.com を開く
-        </button>
+            {/* note.com を開くボタン */}
+            <button
+              onClick={handleOpenNote}
+              className="group relative px-6 py-3 rounded-xl font-semibold bg-dark-border hover:bg-dark-border/80 text-dark-text transition-all duration-300 border border-dark-border/50 hover:border-accent-purple/50 hover:shadow-lg hover:shadow-accent-purple/30 hover:-translate-y-1"
+            >
+              <span className="flex items-center justify-center gap-2">
+                <span>📖</span>
+                <span>note.com を開く</span>
+              </span>
+            </button>
 
-        <button
-          onClick={() => setShowPreview(!showPreview)}
-          className="flex-1 px-4 py-2 bg-dark-border hover:bg-dark-border/80 text-dark-text rounded-lg font-semibold transition-colors"
-        >
-          {showPreview ? "👁️ 非表示" : "👁️ プレビュー"}
-        </button>
-      </div>
+            {/* プレビューボタン */}
+            <button
+              onClick={() => setShowPreview(!showPreview)}
+              className={`group relative px-6 py-3 rounded-xl font-semibold transition-all duration-300 border ${
+                showPreview
+                  ? "bg-accent-purple/20 text-accent-purple border-accent-purple/50"
+                  : "bg-dark-border hover:bg-dark-border/80 text-dark-text border-dark-border/50 hover:border-accent-purple/50 hover:shadow-lg hover:shadow-accent-purple/30 hover:-translate-y-1"
+              }`}
+            >
+              <span className="flex items-center justify-center gap-2">
+                <span>👁️</span>
+                <span>{showPreview ? "プレビュー中" : "プレビュー表示"}</span>
+              </span>
+            </button>
+          </div>
 
-      {showPreview && (
-        <div className="mt-4 p-4 bg-dark-bg border border-dark-border rounded-lg overflow-auto max-h-96">
-          <pre className="text-sm text-dark-muted whitespace-pre-wrap break-words font-mono">
-            {noteContent}
-          </pre>
+          {/* プレビューセクション */}
+          {showPreview && (
+            <div className="mt-6 animate-in fade-in duration-300">
+              <div className="bg-dark-bg/50 border border-dark-border/50 rounded-xl p-6 backdrop-blur-sm">
+                <p className="text-xs font-semibold text-dark-muted uppercase tracking-wider mb-3">
+                  📄 プレビュー
+                </p>
+                <pre className="text-xs md:text-sm text-dark-muted whitespace-pre-wrap break-words font-mono overflow-auto max-h-80 scrollbar-thin scrollbar-thumb-dark-border scrollbar-track-dark-bg">
+                  {noteContent}
+                </pre>
+              </div>
+            </div>
+          )}
+
+          {/* 使い方ガイド */}
+          <div className="mt-6 bg-dark-bg/40 border border-dark-border/30 rounded-xl p-5 backdrop-blur-xs">
+            <p className="text-xs font-bold text-accent-purple uppercase tracking-wider mb-3">
+              🎯 3ステップで投稿
+            </p>
+            <ol className="space-y-2 text-sm text-dark-muted">
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-accent-purple/20 text-accent-purple flex items-center justify-center text-xs font-bold">
+                  1
+                </span>
+                <span>
+                  <span className="text-dark-text font-semibold">「テキストをコピー」</span>
+                  をクリックして、記事をコピー
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-accent-purple/20 text-accent-purple flex items-center justify-center text-xs font-bold">
+                  2
+                </span>
+                <span>
+                  <span className="text-dark-text font-semibold">「note.com を開く」</span>
+                  をクリック（新規記事作成ページが開きます）
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-accent-purple/20 text-accent-purple flex items-center justify-center text-xs font-bold">
+                  3
+                </span>
+                <span>
+                  本文欄に貼り付けて、編集・投稿完了！
+                </span>
+              </li>
+            </ol>
+          </div>
         </div>
-      )}
-
-      <div className="mt-4 p-3 bg-dark-bg border border-dark-border rounded text-sm text-dark-muted">
-        <p className="font-semibold mb-2">📌 使い方:</p>
-        <ol className="list-decimal list-inside space-y-1">
-          <li>「テキストをコピー」をクリック</li>
-          <li>「note.com を開く」をクリック（新規記事作成ページが開きます）</li>
-          <li>本文欄に貼り付けて、編集・投稿</li>
-        </ol>
       </div>
     </div>
   );
