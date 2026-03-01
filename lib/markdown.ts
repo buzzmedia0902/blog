@@ -52,6 +52,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
       seoTitle: data.seo_title,
       seoDescription: data.seo_description,
       content,
+      thumbnail: data.thumbnail,
     };
   } catch (error) {
     console.error(`Error reading post ${slug}:`, error);
