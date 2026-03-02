@@ -1,0 +1,55 @@
+{
+  "name": "freee-invoice-creator",
+  "displayName": "freee 請求書作成スキル",
+  "description": "freee会計システムで請求書を自動作成するMCPスキル。API連携と完全自動化で、請求書の作成から保存まですべてを自動処理します。",
+  "version": "1.0.0",
+  "author": "BuzzMedia",
+  "keywords": [
+    "freee",
+    "invoice",
+    "automation",
+    "accounting",
+    "subsidy"
+  ],
+  "commands": [
+    {
+      "name": "create-invoice",
+      "description": "freeeで請求書を作成",
+      "usage": "/freee-invoice-creator create-invoice [customerId|customerName] [trainingParticipants] [--date YYYY-MM-DD] [--dueDate YYYY-MM-DD]"
+    },
+    {
+      "name": "search-customer",
+      "description": "顧客情報を検索",
+      "usage": "/freee-invoice-creator search-customer [query]"
+    },
+    {
+      "name": "get-customer",
+      "description": "顧客の詳細情報を取得",
+      "usage": "/freee-invoice-creator get-customer [customerId]"
+    }
+  ],
+  "requirements": {
+    "environment_variables": [
+      "FREEE_API_KEY",
+      "FREEE_ACCOUNT_ID",
+      "SUBSIDY_API_KEY",
+      "SUBSIDY_API_BASE_URL"
+    ],
+    "node_version": ">=18.0.0",
+    "packages": [
+      "playwright",
+      "axios"
+    ]
+  },
+  "entryPoint": "dist/mcp-server.js",
+  "capabilities": {
+    "api_integration": true,
+    "browser_automation": true,
+    "file_operations": false,
+    "network_access": true
+  },
+  "documentation": {
+    "guide": "SKILL.md",
+    "references": "references/fixed_values.md"
+  }
+}

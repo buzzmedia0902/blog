@@ -1,0 +1,37 @@
+{
+  "name": "freee-invoice-creator-mcp",
+  "version": "1.0.0",
+  "description": "freee請求書作成 MCP スキル - API連携とブラウザ自動化による完全自動化",
+  "main": "dist/mcp-server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/mcp-server.ts",
+    "build": "tsc",
+    "start": "node dist/mcp-server.js",
+    "test": "node --test dist/**/*.test.js",
+    "lint": "eslint src/",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "freee",
+    "invoice",
+    "mcp",
+    "automation",
+    "subsidy"
+  ],
+  "author": "BuzzMedia",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.0",
+    "axios": "^1.6.0",
+    "dotenv": "^17.3.1",
+    "playwright": "^1.40.0",
+    "pino": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.0",
+    "tsx": "^4.7.0",
+    "eslint": "^8.55.0"
+  }
+}
