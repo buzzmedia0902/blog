@@ -15,8 +15,12 @@ class FreeeInvoiceCreatorMCP {
   private browser: BrowserAutomation;
 
   constructor() {
+    // OAuth access_token を使用
+    const freeeAccessToken =
+      process.env.FREEE_ACCESS_TOKEN || this.config.freee.apiKey;
+
     this.freeeClient = new FreeeClient(
-      this.config.freee.apiKey,
+      freeeAccessToken,
       this.config.freee.accountId,
       this.config.freee.baseUrl
     );

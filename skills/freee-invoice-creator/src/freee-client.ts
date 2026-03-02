@@ -5,12 +5,12 @@ export class FreeeClient {
   private client: AxiosInstance;
   private accountId: string;
 
-  constructor(apiKey: string, accountId: string, baseUrl: string) {
+  constructor(accessToken: string, accountId: string, baseUrl: string) {
     this.accountId = accountId;
     this.client = axios.create({
       baseURL: baseUrl,
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${accessToken}`, // OAuth access_token を使用
         "Content-Type": "application/json",
       },
     });
